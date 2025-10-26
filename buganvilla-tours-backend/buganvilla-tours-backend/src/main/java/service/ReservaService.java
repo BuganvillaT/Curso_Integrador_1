@@ -9,15 +9,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ReservaService {
+
     @Autowired
     private ReservaDAO reservaDAO;
-    
+
     @Autowired
     private InventarioPaquetesDAO inventarioDAO;
-    
+
     public Reserva crearReserva(Reserva reserva) {
-        InventarioPaquetes inventario = inventarioDAO.findById(reserva.getIdInventario())
+        InventarioPaquetes inventario = inventarioDAO.findById(reserva.getInventario().getIdInventario())
             .orElseThrow(() -> new RuntimeException("Inventario no encontrado"));
+
         if (inventario.getCupoDisponible() >= reserva.getCantidadPersonas()) {
             inventario.setCupoDisponible(inventario.getCupoDisponible() - reserva.getCantidadPersonas());
             inventarioDAO.save(inventario);

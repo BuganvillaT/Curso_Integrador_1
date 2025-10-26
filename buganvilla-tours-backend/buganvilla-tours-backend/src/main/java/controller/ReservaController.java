@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/reservas")
 public class ReservaController {
+
     @Autowired
     private ReservaService reservaService;
-    
+
     @PostMapping
     public ResponseEntity<Reserva> crearReserva(@RequestBody Reserva reserva) {
-        return ResponseEntity.ok(reservaService.crearReserva(reserva));
+        Reserva nuevaReserva = reservaService.crearReserva(reserva);
+        return ResponseEntity.ok(nuevaReserva);
     }
 }
