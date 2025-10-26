@@ -1,57 +1,68 @@
 package com.buganvillatours.Utilidades;
 
-import com.buganvillatours.Entidades_JPA.Reserva;
+import com.buganvillatours.entity.Reserva;
+import com.buganvillatours.entity.InventarioPaquetes;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.stereotype.Component;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-@Component // Esto permite que Spring lo gestione e inyecte dependencias si es necesario
 public class ReporteExcelUtil {
-
-    public ByteArrayInputStream generarReporteReservas(List<Reserva> reservas) {
-        try (Workbook workbook = new XSSFWorkbook()) {
-            Sheet sheet = workbook.createSheet("Reservas");
-
-            // Estilo para encabezados
-            CellStyle headerStyle = workbook.createCellStyle();
-            Font font = workbook.createFont();
-            font.setBold(true);
-            headerStyle.setFont(font);
-
-            // Cabeceras
-            Row headerRow = sheet.createRow(0);
-            String[] headers = {"ID", "Cliente", "Paquete", "Fecha Reserva", "Estado"};
-            for (int i = 0; i < headers.length; i++) {
-                Cell cell = headerRow.createCell(i);
-                cell.setCellValue(headers[i]);
-                cell.setCellStyle(headerStyle);
-            }
-
-            int rowIdx = 1;
-            for (Reserva r : reservas) {
-                Row row = sheet.createRow(rowIdx++);
-                row.createCell(0).setCellValue(r.getId_reserva());
-                row.createCell(1).setCellValue(r.getUsuario().getNombre());
-                row.createCell(2).setCellValue(r.getInventarioPaquetes().getPaquete().getNombre_paquete());
-                row.createCell(3).setCellValue(r.getFecha_reserva().toString());
-                row.createCell(4).setCellValue(r.getEstado());
-            }
-
-            // Ajustar ancho de columnas automáticamente
-            for (int i = 0; i < headers.length; i++) {
-                sheet.autoSizeColumn(i);
-            }
-
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            workbook.write(out);
-            return new ByteArrayInputStream(out.toByteArray());
-        } catch (IOException e) {
-            throw new RuntimeException("Error al generar el reporte Excel", e);
+    public static byte[] generarExcelReservas(List<Reserva> reservas) throws IOException {
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Reservas");
+        
+        // Encabezados
+        Row header = sheet.createRow(0);
+        header.createCell(0).setCellValue("ID Reserva");
+        header.createCell(1).setCellValue("Usuario");
+        header.createCell(2).setCellValue("Paquete");
+        header.createCell(3).setCellValue("Fecha Reserva");
+        
+        // Datos
+        int rowNum = 1;
+        for (Reserva r : reservas) {
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(r.getIdReserva());
+            row.createCell(1).setCellValue(r.getUsuario().getNombre());
+            row.createCell(2).setCellValue(r.getInventario().getPaquete().getNombrePaquete());
+            row.createCell(3).setCellValue(r.getFechaReserva().toString());
         }
+        
+        // Convertir a bytes
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        workbook.write(outputStream);
+        workbook.close();
+        return outputStream.toByteArray();
+    }
+
+    public static byte[] generarExcelInventario(List<InventarioPaquetes> inventarios) throws IOException {
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Inventario");
+        
+        // Encabezados
+        Row header = sheet.createRow(0);
+        header.createCell(0).setCellValue("ID Inventario");
+        header.createCell(1).setCellValue("Paquete");
+        header.createCell(2).setCellValue("Cupo Total");
+        header.createCell(3).setCellValue("Cupo Disponible");
+        
+        // Datos
+        int rowNum = 1;
+        for (InventarioPaquetes i : inventarios) {
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(i.getIdInventario());
+            row.createCell(1).setCellValue(i.getPaquete().getNombrePaquete());
+            row.createCell(2).setCellValue(i.getCupoTotal());
+            row.createCell(3).setCellValue(i.getCupoDisponible());
+        }
+        
+        // Convertir a bytes
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        workbook.write(outputStream);
+        workbook.close();
+        return outputStream.toByteArray();
     }
 }
