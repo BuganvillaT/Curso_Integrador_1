@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data; // Opcional: usa Lombok si lo agregas al pom.xml
 
 @Entity
-@Table(name = "Usuario")
+@Table(name = "Usuarios")
 @Data // Genera getters/setters automáticamente
 public class Usuario {
     @Id

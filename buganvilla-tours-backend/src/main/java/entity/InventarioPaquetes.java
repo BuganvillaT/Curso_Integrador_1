@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import model.Paquete;
 
 @Entity
-@Table(name = "InventarioPaquetes")
+@Table(name = "Inventario_Paquetes")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,4 +25,5 @@ public class InventarioPaquetes {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_paquete")
     private Paquete paquete;
+
 }
