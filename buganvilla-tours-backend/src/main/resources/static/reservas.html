@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar - Buganvilla Tours</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/css/buganvilla-style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+        <div class="container">
+            <a class="navbar-brand navbar-brand-custom" href="index.html">
+                <i class="fas fa-mountain text-primary-custom me-2"></i>
+                Buganvilla Tours
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="paquetes.html">Paquetes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="index.html#about">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="index.html#contact">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom active" href="reservas.html">
+                            <i class="fas fa-calendar-check me-1"></i>Reservar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-custom" href="admin.html">
+                            <i class="fas fa-user-cog me-1"></i>Admin
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="py-5 mt-5" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white;">
+        <div class="container">
+            <div class="text-center">
+                <h1 class="display-4 mb-3">Reservar Tu Experiencia</h1>
+                <p class="lead">Completa el formulario y confirma tu aventura con nosotros</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Form -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="reservation-form">
+                        <div class="row">
+                            <!-- Form Section -->
+                            <div class="col-lg-8">
+                                <h3 class="mb-4"><i class="fas fa-clipboard-list text-primary-custom me-2"></i>Datos de Reserva</h3>
+                                
+                                <form id="reservation-form">
+                                    <!-- Package Selection -->
+                                    <div class="mb-4">
+                                        <label for="package-select" class="form-label fw-bold">Seleccionar Paquete *</label>
+                                        <select class="form-select form-control-custom" id="package-select" required>
+                                            <option value="">Selecciona un paquete...</option>
+                                            <!-- Options will be loaded dynamically -->
+                                        </select>
+                                    </div>
+
+                                    <!-- Personal Information -->
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="full-name" class="form-label fw-bold">Nombre Completo *</label>
+                                            <input type="text" class="form-control form-control-custom" id="full-name" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="email" class="form-label fw-bold">Email *</label>
+                                            <input type="email" class="form-control form-control-custom" id="email" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="phone" class="form-label fw-bold">Teléfono *</label>
+                                            <input type="tel" class="form-control form-control-custom" id="phone" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="document" class="form-label fw-bold">DNI/Documento</label>
+                                            <input type="text" class="form-control form-control-custom" id="document">
+                                        </div>
+                                    </div>
+
+                                    <!-- Trip Details -->
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="travel-date" class="form-label fw-bold">Fecha de Viaje *</label>
+                                            <input type="date" class="form-control form-control-custom" id="travel-date" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="passengers" class="form-label fw-bold">Número de Personas *</label>
+                                            <select class="form-select form-control-custom" id="passengers" required>
+                                                <option value="">Seleccionar...</option>
+                                                <option value="1">1 persona</option>
+                                                <option value="2">2 personas</option>
+                                                <option value="3">3 personas</option>
+                                                <option value="4">4 personas</option>
+                                                <option value="5">5 personas</option>
+                                                <option value="6">6 personas</option>
+                                                <option value="7">7 personas</option>
+                                                <option value="8">8 personas</option>
+                                                <option value="more">Más de 8 (contactar)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Additional Services -->
+                                    <div class="mb-4">
+                                        <label class="form-label fw-bold">Servicios Adicionales</label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="hotel-pickup">
+                                                    <label class="form-check-label" for="hotel-pickup">
+                                                        Recojo en hotel (+S/20)
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="lunch-included">
+                                                    <label class="form-check-label" for="lunch-included">
+                                                        Almuerzo incluido (+S/35)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="guide-english">
+                                                    <label class="form-check-label" for="guide-english">
+                                                        Guía en inglés (+S/50)
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="insurance">
+                                                    <label class="form-check-label" for="insurance">
+                                                        Seguro de viaje (+S/15)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Special Requests -->
+                                    <div class="mb-4">
+                                        <label for="special-requests" class="form-label fw-bold">Solicitudes Especiales</label>
+                                        <textarea class="form-control form-control-custom" id="special-requests" rows="3" placeholder="Alergias alimentarias, necesidades especiales, etc."></textarea>
+                                    </div>
+
+                                    <!-- Terms and Conditions -->
+                                    <div class="mb-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="terms-conditions" required>
+                                            <label class="form-check-label" for="terms-conditions">
+                                                Acepto los <a href="#" class="text-primary-custom">términos y condiciones</a> y las <a href="#" class="text-primary-custom">políticas de cancelación</a> *
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="privacy-policy" required>
+                                            <label class="form-check-label" for="privacy-policy">
+                                                Acepto las <a href="#" class="text-primary-custom">políticas de privacidad</a> *
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- Submit Button -->
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary-custom btn-lg px-5">
+                                            <i class="fas fa-check-circle me-2"></i>Confirmar Reserva
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Summary Section -->
+                            <div class="col-lg-4">
+                                <div class="bg-light p-4 rounded-3 sticky-top" style="top: 100px;">
+                                    <h4 class="mb-4"><i class="fas fa-receipt text-primary-custom me-2"></i>Resumen</h4>
+                                    
+                                    <div id="reservation-summary">
+                                        <div class="text-center text-muted py-4">
+                                            <i class="fas fa-clipboard-list fa-2x mb-3"></i>
+                                            <p>Selecciona un paquete para ver el resumen</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Price Breakdown -->
+                                    <div id="price-breakdown" style="display: none;">
+                                        <hr>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Subtotal:</span>
+                                            <span id="subtotal">S/ 0.00</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Servicios adicionales:</span>
+                                            <span id="additional-services">S/ 0.00</span>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex justify-content-between">
+                                            <strong>Total:</strong>
+                                            <strong class="text-primary-custom" id="total-price">S/ 0.00</strong>
+                                        </div>
+                                    </div>
+
+                                    <!-- Contact Info -->
+                                    <div class="mt-4 p-3 bg-white rounded">
+                                        <h6><i class="fas fa-phone text-primary-custom me-2"></i>¿Necesitas ayuda?</h6>
+                                        <p class="mb-2 small">Llámanos al: <strong>+51 999 123 456</strong></p>
+                                        <p class="mb-0 small">Email: <strong>info@buganvillatours.com</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confirmation Modal -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">
+                        <i class="fas fa-check-circle me-2"></i>¡Reserva Confirmada!
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
+                        <h4>¡Gracias por tu reserva!</h4>
+                        <p class="lead">Tu reserva ha sido confirmada exitosamente.</p>
+                    </div>
+                    
+                    <div id="confirmation-details">
+                        <!-- Confirmation details will be populated here -->
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>Próximos pasos:</strong>
+                        <ul class="mb-0 mt-2">
+                            <li>Recibirás un email de confirmación en los próximos minutos</li>
+                            <li>Nuestro equipo se contactará contigo para coordinar detalles</li>
+                            <li>Revisa nuestras políticas de cancelación</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary-custom" onclick="window.print()">
+                        <i class="fas fa-print me-2"></i>Imprimir Voucher
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5><i class="fas fa-mountain me-2"></i>Buganvilla Tours</h5>
+                    <p>Experiencias turísticas personalizadas, confiables y memorables en la región de Ica.</p>
+                    <div class="social-links">
+                        <a href="#" class="me-3"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5>Enlaces</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="paquetes.html">Paquetes</a></li>
+                        <li><a href="index.html#about">Nosotros</a></li>
+                        <li><a href="index.html#contact">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Destinos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Líneas de Nazca</a></li>
+                        <li><a href="#">Islas Ballestas</a></li>
+                        <li><a href="#">Oasis de Huacachina</a></li>
+                        <li><a href="#">Bodegas de Ica</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Contacto</h5>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>Ica, Perú</p>
+                    <p><i class="fas fa-phone me-2"></i>+51 999 123 456</p>
+                    <p><i class="fas fa-envelope me-2"></i>info@buganvillatours.com</p>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2025 Buganvilla Tours. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/js/reservations.js"></script>
+</body>
+</html>
